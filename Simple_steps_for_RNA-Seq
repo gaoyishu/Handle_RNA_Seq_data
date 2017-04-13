@@ -3,3 +3,81 @@ What file you need to prepare?
     2.
     3.
     4.
+awk '!a[$0]++' genes_name_DiEx_info_trans > genes_name_DiEx_info_trans_RMD
+[yishu@SoybeanCenter RNA]$ wc -l genes_name_DiEx_info_trans_RMD
+16077 genes_name_DiEx_info_trans_RMD
+[yishu@SoybeanCenter RNA]$ less genes_name_DiEx_info_trans_RMD
+[yishu@SoybeanCenter RNA]$ less StingTie_merged.gtf 
+[yishu@SoybeanCenter RNA]$ awk '{print $5}' genes_name_DiEx_info_trans_RMD > DiffEx_StringTieName
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName 
+[yishu@SoybeanCenter RNA]$ awk '!a[$0]++' DiffEx_StringTieName > DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_StringTieName_uniq
+11865 DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ ls
+DiffEx_StringTieName        genes_name_DiEx_info_trans_RMD  genes_nomarlized.exp           histone_MethyRelated_gene  StingTie_merged.gtf
+DiffEx_StringTieName_uniq   genes_name_DiffEx               genes_results_sorted           matching_genes2gff.py
+genes_name_DiEx_info_trans  genes_name_DiffEx_info          Gmax_275_Wm82.a2.v1.gene.gff3  readme.txt
+[yishu@SoybeanCenter RNA]$ 
+[yishu@SoybeanCenter RNA]$ ls
+DiffEx_StringTieName        genes_name_DiEx_info_trans_RMD  genes_nomarlized.exp           histone_MethyRelated_gene  StingTie_merged.gtf
+DiffEx_StringTieName_uniq   genes_name_DiffEx               genes_results_sorted           matching_genes2gff.py
+genes_name_DiEx_info_trans  genes_name_DiffEx_info          Gmax_275_Wm82.a2.v1.gene.gff3  readme.txt
+[yishu@SoybeanCenter RNA]$ less genes_nomarlized.exp
+[yishu@SoybeanCenter RNA]$ less genes_results_sorted
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ sed 's/\"//g' DiffEx_StringTieName_uniq > DiffEx_StringTieName_uniq1
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq1
+[yishu@SoybeanCenter RNA]$ sed 's/\;//g' DiffEx_StringTieName_uniq1 > DiffEx_StringTieName_uniq2
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq1
+[yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq2
+[yishu@SoybeanCenter RNA]$ ls
+DiffEx_StringTieName        DiffEx_StringTieName_uniq2      genes_name_DiffEx       genes_results_sorted           matching_genes2gff.py
+DiffEx_StringTieName_uniq   genes_name_DiEx_info_trans      genes_name_DiffEx_info  Gmax_275_Wm82.a2.v1.gene.gff3  readme.txt
+DiffEx_StringTieName_uniq1  genes_name_DiEx_info_trans_RMD  genes_nomarlized.exp    histone_MethyRelated_gene      StingTie_merged.gtf
+[yishu@SoybeanCenter RNA]$ less StingTie_merged.gtf
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_StringTieName_uniq2
+11865 DiffEx_StringTieName_uniq2
+[yishu@SoybeanCenter RNA]$ grep -f DiffEx_StringTieName_uniq2 StingTie_merged.gtf > DiffEx_genenames
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_genenames
+151586 DiffEx_genenames
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames
+[yishu@SoybeanCenter RNA]$ awk '{print $(NF-1)}' DiffEx_genenames > DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ rm DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames
+[yishu@SoybeanCenter RNA]$ awk '{print $14}' DiffEx_genenames > DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames
+[yishu@SoybeanCenter RNA]$ rm DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ awk '{print $16}' DiffEx_genenames > DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames1
+[yishu@SoybeanCenter RNA]$ awk '/./ {print}' DiffEx_genenames1 > DiffEx_genenames2
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2
+[yishu@SoybeanCenter RNA]$ awk '!a[$0]++' DiffEx_genenames2 > DiffEx_genenames2.unique
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_genenames2.unique
+10622 DiffEx_genenames2.unique
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique
+[yishu@SoybeanCenter RNA]$ vim get_genenames.py
+[yishu@SoybeanCenter RNA]$ echo $a|cut -c2-16 DiffEx_genenames2.unique > DiffEx_genenames2.unique1
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique1
+[yishu@SoybeanCenter RNA]$ awk '!a[$0]++' DiffEx_genenames2.unique1 > DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_genenames2.unique2
+5465 DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ vim DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ less DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ wc -l DiffEx_genenames2.unique2
+5464 DiffEx_genenames2.unique2
+[yishu@SoybeanCenter RNA]$ ls
+DiffEx_genenames           DiffEx_genenames2.unique2   genes_name_DiEx_info_trans      genes_results_sorted           readme.txt
+DiffEx_genenames1          DiffEx_StringTieName        genes_name_DiEx_info_trans_RMD  get_genenames.py               StingTie_merged.gtf
+DiffEx_genenames2          DiffEx_StringTieName_uniq   genes_name_DiffEx               Gmax_275_Wm82.a2.v1.gene.gff3
+DiffEx_genenames2.unique   DiffEx_StringTieName_uniq1  genes_name_DiffEx_info          histone_MethyRelated_gene
+DiffEx_genenames2.unique1  DiffEx_StringTieName_uniq2  genes_nomarlized.exp            matching_genes2gff.py
+[yishu@SoybeanCenter RNA]$ less genes_nomarlized.exp
+[yishu@SoybeanCenter RNA]$ less genes_results_sorted
