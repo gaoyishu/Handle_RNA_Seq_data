@@ -3,9 +3,8 @@ What file you need to prepare?
     2.
     3.
     4.
+#merge replicate strings into 1 string
 awk '!a[$0]++' genes_name_DiEx_info_trans > genes_name_DiEx_info_trans_RMD
-[yishu@SoybeanCenter RNA]$ wc -l genes_name_DiEx_info_trans_RMD
-16077 genes_name_DiEx_info_trans_RMD
 [yishu@SoybeanCenter RNA]$ less genes_name_DiEx_info_trans_RMD
 [yishu@SoybeanCenter RNA]$ less StingTie_merged.gtf 
 [yishu@SoybeanCenter RNA]$ awk '{print $5}' genes_name_DiEx_info_trans_RMD > DiffEx_StringTieName
