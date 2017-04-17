@@ -9,7 +9,8 @@ awk '!a[$0]++' genes_name_DiEx_info_trans > genes_name_DiEx_info_trans_RMD
 [yishu@SoybeanCenter RNA]$ less StingTie_merged.gtf 
 [yishu@SoybeanCenter RNA]$ awk '{print $5}' genes_name_DiEx_info_trans_RMD > DiffEx_StringTieName
 [yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName 
-[yishu@SoybeanCenter RNA]$ awk '!a[$0]++' DiffEx_StringTieName > DiffEx_StringTieName_uniq
+[yishu@SoybeanCenter RNA]$ awk '!a[$0]++' DiffEx_StringTieName > DiffEx DiffEx_StringTieName_uniq
+sort -u DiffEx_StringTieName >  DiffEx_StringTieName_uniq
 [yishu@SoybeanCenter RNA]$ less DiffEx_StringTieName_uniq
 [yishu@SoybeanCenter RNA]$ wc -l DiffEx_StringTieName_uniq
 11865 DiffEx_StringTieName_uniq
