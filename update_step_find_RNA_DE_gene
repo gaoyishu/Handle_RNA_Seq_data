@@ -1,0 +1,16 @@
+#extract $1:gene name $3:p-value by $2:fold change of root/nodule <0.5, which help you get the genes expressed over 2 fold in nodule
+#if you want to get the genes expressed over 2 fold in root, $2 >2
+awk '$2 < 0.5 {print $1, $3 }' genes_results_sorted > genes_dfexp_nod #genes expressed over 2 fold in root
+awk '$2 > 2 {print $1, $3 }' genes_results_sorted > genes_dfexp_root  #genes expressed over 2 fold in root
+awk '$2 <= 0.01 {print $1}' genes_dfexp_nod > genes_dfexp_nod_0.01 #extract the p-value lower than 0.01
+grep -f genes_dfexp_nod_0.01 StingTie_merged.gtf >  genes_dfexp_nod_info #get the gene annotation infomation 
+awk '{print $16}' genes_dfexp_nod_info > genes_dfexp_nod_name #get the glyma standard names
+sed '/^$/d' genes_dfexp_nod_name  #remove empty row
+sed 's/\"//g' genes_dfexp_nod_name #remove \"/
+sed 's/\;//g' genes_dfexp_nod_name #remove \;/
+cut -c1-15 genes_dfexp_nod_name #retain pre 15 strings
+sort -u genes_dfexp_nod_name #remove duplicate name
+#you can get your DE genes with standard name in genes_dfexp_nod_name
+#prepare one file contain gene names you interested:eg genename.txt
+grep -f genename.txt genes_dfexp_nod_name > genes_DE_interested.txt
+
